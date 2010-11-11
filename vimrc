@@ -43,7 +43,8 @@ set hlsearch
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
-nnoremap <leader>b :b<space>
+nnoremap <leader>b :FufBuffer<cr>
+nnoremap <leader>f :FufFile<cr>
 
 set wrap
 set textwidth=79
