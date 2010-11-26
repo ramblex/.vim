@@ -66,14 +66,17 @@ nnoremap <leader>v V`]
 inoremap jj <ESC>
 
 if has('gui_running')
-    set guifont=Menlo:h12
-    colorscheme alex
+    syn on
+    "set guifont=Menlo:h12
+    colorscheme molokai
     set background=dark
     set autochdir
     set relativenumber
     "set undofile
-    set colorcolumn=100
+    set colorcolumn=80
     set linespace=2
+    set columns=84
+    set lines=39
 
     set go-=T
     set go-=l
