@@ -1,10 +1,19 @@
 " My vim file
 
-filetype off
-call pathogen#runtime_append_all_bundles()
-filetype on
-
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'mrtazz/molokai'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'rails.vim'
+Bundle 'YankRing'
+
+filetype on
 
 " Security
 set modelines=0
@@ -29,6 +38,10 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
+set directory=~/.vim-swp/
+set nobackup
+set nowritebackup
+set noswapfile
 
 let mapleader = ","
 
@@ -51,7 +64,7 @@ set textwidth=79
 set formatoptions=qrn1
 
 set list
-set listchars=trail:⋅,tab:▸\
+set listchars=trail:⋅,tab:▸·
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -63,18 +76,22 @@ au! BufRead,BufNewFile *.haml         setfiletype haml
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
-inoremap jj <ESC>
+"inoremap jj <ESC>
 
 if has('gui_running')
-    set guifont=Menlo:h12
-    colorscheme alex
-    set background=dark
+    set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+    colorscheme molokai
+    set background=light
     set autochdir
     set relativenumber
     "set undofile
-    set colorcolumn=100
+    set colorcolumn=80
     set linespace=2
 
+    set columns=84
+    set lines=39
+
+    set go-=m
     set go-=T
     set go-=l
     set go-=L
