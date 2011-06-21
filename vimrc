@@ -7,11 +7,12 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'mrtazz/molokai'
+Bundle 'chrismetcalf/vim-yankring'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'rails.vim'
-Bundle 'YankRing'
+Bundle 'vim-coffee-script'
 
 filetype on
 
@@ -72,6 +73,7 @@ vnoremap <F1> <ESC>
 
 au FocusLost * :wa
 au! BufRead,BufNewFile *.haml         setfiletype haml
+au! BufRead,BufNewFile *.msgs         setfiletype c
 
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>q gqip
@@ -81,7 +83,7 @@ nnoremap <leader>v V`]
 if has('gui_running')
     set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
     colorscheme molokai
-    set background=light
+    set background=dark
     set autochdir
     set relativenumber
     "set undofile
