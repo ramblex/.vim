@@ -2,7 +2,7 @@
 
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -34,7 +34,7 @@ set hidden
 set wildmenu
 set wildmode=list:longest
 set visualbell
-set cursorline
+set nocursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
