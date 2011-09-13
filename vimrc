@@ -8,10 +8,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'mrtazz/molokai'
 Bundle 'chrismetcalf/vim-yankring'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-markdown'
+Bundle 'godlygeek/tabular'
+Bundle 'jgdavey/vim-railscasts'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'rails.vim'
 Bundle 'vim-coffee-script'
 
 filetype on
@@ -79,6 +83,11 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "inoremap jj <ESC>
+
+nnoremap <leader>t :Tabularize /\|<CR>
+
+highlight Pmenu ctermfg=15 ctermbg=0
+highlight PmenuSel ctermfg=1 ctermbg=0
 
 if has('gui_running')
     set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
