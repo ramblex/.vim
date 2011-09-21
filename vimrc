@@ -6,17 +6,19 @@ set rtp+=~/.vim/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'mrtazz/molokai'
+Bundle 'vim-scripts/wombat256.vim'
 Bundle 'chrismetcalf/vim-yankring'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
 Bundle 'jgdavey/vim-railscasts'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'vim-coffee-script'
+Bundle 'taglist.vim'
 
 filetype on
 
@@ -63,6 +65,8 @@ nnoremap <tab> %
 vnoremap <tab> %
 nnoremap <leader>b :FufBuffer<cr>
 nnoremap <leader>f :FufFile<cr>
+nnoremap <leader>T :TlistToggle<cr>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 set wrap
 set textwidth=79
@@ -75,6 +79,19 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" Table alignment
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
 au FocusLost * :wa
 au! BufRead,BufNewFile *.haml         setfiletype haml
 au! BufRead,BufNewFile *.msgs         setfiletype c
@@ -82,7 +99,11 @@ au! BufRead,BufNewFile *.msgs         setfiletype c
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
-"inoremap jj <ESC>
+
+colorscheme wombat256mod
+
+nnoremap <leader>n :tn<cr>
+nnoremap <leader>p :tp<cr>
 
 nnoremap <leader>t :Tabularize /\|<CR>
 
@@ -91,7 +112,6 @@ highlight PmenuSel ctermfg=1 ctermbg=0
 
 if has('gui_running')
     set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
-    colorscheme molokai
     set background=dark
     set autochdir
     set relativenumber
